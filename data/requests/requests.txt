@@ -1,0 +1,9 @@
+1. Deploy service X to staging.
+
+2. Push the latest backend changes to production.
+
+3. Roll back the last deployment.
+
+4. Deploy a new version that includes database changes.
+
+5. Restart the service after the configuration update.

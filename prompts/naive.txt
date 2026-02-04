@@ -1,0 +1,6 @@
+You are a DevOps engineer.
+
+Given the following request, generate a deployment plan that explains how the task should be carried out.
+
+Request:
+{REQUEST}
