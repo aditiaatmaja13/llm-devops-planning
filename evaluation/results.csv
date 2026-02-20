@@ -1,16 +1,32 @@
-run_id,request_id,variant,required_info,preconditions,execution_steps,validation,rollback,risks_assumptions,notes
-hf_run_20260215_194204,req1,naive,,,,,,,
-hf_run_20260215_194204,req1,structured,,,,,,,
-hf_run_20260215_194204,req1,structured_rag,,,,,,,
-hf_run_20260215_194204,req2,naive,,,,,,,
-hf_run_20260215_194204,req2,structured,,,,,,,
-hf_run_20260215_194204,req2,structured_rag,,,,,,,
-hf_run_20260215_194204,req3,naive,,,,,,,
-hf_run_20260215_194204,req3,structured,,,,,,,
-hf_run_20260215_194204,req3,structured_rag,,,,,,,
-hf_run_20260215_194204,req4,naive,,,,,,,
-hf_run_20260215_194204,req4,structured,,,,,,,
-hf_run_20260215_194204,req4,structured_rag,,,,,,,
-hf_run_20260215_194204,req5,naive,,,,,,,
-hf_run_20260215_194204,req5,structured,,,,,,,
-hf_run_20260215_194204,req5,structured_rag,,,,,,,
+run_id,request_id,variant,required_info,preconditions,execution_steps,validation,rollback,risks_assumptions,structural_clarity,assumption_control,total_score,notes
+
+hf_run_20260215_211003,req1,naive,2,2,2,2,2,1,2,0,13,"Extremely detailed and production-grade, but heavy unsupported infrastructure hallucination (Kubernetes, ArgoCD, Helm, GitHub Actions, NewRelic, Loki, OPA, etc.) without being requested; violates groundedness criteria."
+
+hf_run_20260215_211003,req1,structured,2,2,2,2,2,2,2,3,15,"Strong structure, explicit required inputs, measurable rollback triggers; assumes Kubernetes/Helm/CD tooling but framed conditionally and not deeply hard-coded; mostly cautious with minor environment inference."
+
+hf_run_20260215_211003,req1,structured_rag,1,2,1,1,1,2,2,4,14,"Explicitly requests missing artifact/method and avoids infrastructure invention; fully grounded and assumption-controlled (score=4), though less operationally detailed in execution and validation."
+
+hf_run_20260215_211003,req2,naive,0,2,2,2,2,1,2,0,11,"Highly operational and realistic, but fully assumes specific stack (GitHub Actions, ArgoCD, AWS, DataDog, Helm, Kubernetes, Slack bots, etc.) without prompt justification; heavy unsupported infra hallucination"
+
+hf_run_20260215_211003,req2,structured,2,2,2,2,2,2,2,3,15,"Comprehensive and production-grade with explicit required inputs and measurable SLO gates; some infra assumptions (Kubernetes/Helm) but clearly stated as assumptions in risks; mostly cautious"
+
+hf_run_20260215_211003,req2,structured_rag,2,2,1,1,2,2,2,4,16,"Strong assumption control and explicit missing-info gating; avoids tool hallucination and includes DB backup logic; less operationally concrete in execution/validation but fully grounded"
+
+hf_run_20260215_211003,req3,naive,1,2,2,1,2,2,2,3,15,"Very actionable rollback runbook with concrete commands across multiple toolchains and sensible DB/maintenance pre-checks; validation criteria are present but mostly generic (no explicit thresholds). Assumption control is fairly strong because it offers tool-specific sections with placeholders rather than asserting one stack."
+
+hf_run_20260215_211003,req3,structured,2,2,2,2,2,2,2,3,17,"Complete and production-oriented: explicitly requests key inputs, provides concrete rollback commands for several platforms, clear validation gates and rollback triggers, and good risk surfacing (DB/schema compatibility). Minor environment/tool inference remains (assumes access to relevant CLIs), but framed conditionally."
+
+hf_run_20260215_211003,req3,structured_rag,1,2,1,1,1,2,2,4,14,"Grounded and cautious with strong assumption control and good risk notes (registry retention, forward DB migrations), but execution/validation/rollback remain high-level and lack tool-specific, executable steps and measurable success criteria."
+
+hf_run_20260215_211003,req4,naive,0,2,2,2,2,2,2,0,12,"Highly operational and deeply detailed with strong DB + app rollback mechanics and measurable canary gates; however it fully hard-assumes specific stack (EKS, RDS, Flyway, ArgoCD, Flagger, Slack, PagerDuty, Route53, Splunk, etc.) without being requested. Heavy unsupported infra/tool hallucination."
+
+hf_run_20260215_211003,req4,structured,2,2,2,2,2,2,2,3,17,"Comprehensive and production-ready with explicit required inputs, transactional migration handling, measurable SLO validation, and clear rollback triggers including DB restore logic. Minor tooling assumptions but framed generically and conditionally; mostly cautious."
+
+hf_run_20260215_211003,req4,structured_rag,2,2,1,1,1,2,2,4,15,"Strong assumption control and explicit input gating (artifact, migration approval, downtime window). However execution, validation, and rollback remain high-level without concrete commands or measurable thresholds. Fully grounded but less operationally specific."
+
+hf_run_20260215_211003,req5,naive,1,2,2,2,2,1,2,3,15,"Operationally strong with concrete restart commands across multiple platforms and measurable post-check metrics; however it assumes Kubernetes/systemd/Docker Compose and specific observability stack without being requested. Assumptions are modular and selectable rather than enforced, so mostly cautious but still tool-inferential ."
+
+hf_run_20260215_211003,req5,structured,2,2,2,2,2,2,2,3,17,"Comprehensive and environment-aware with explicit required inputs, clear restart sequencing, traffic draining, validation SLAs, and rollback triggers. Minor platform assumptions (systemd/K8s/ECS) but framed conditionally; mostly cautious and controlled."
+
+hf_run_20260215_211003,req5,structured_rag,2,2,1,1,1,2,2,4,15,"Strong assumption control and explicit input gating; avoids stack hallucination and stays environment-agnostic. Execution and validation are less operationally detailed and lack measurable SLO thresholds, but fully grounded."
+
