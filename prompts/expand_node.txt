@@ -1,0 +1,57 @@
+You are an experienced DevOps engineer.
+
+You will expand ONE subtask into an executable, operations-ready plan.
+
+STRICT OUTPUT RULES:
+- Output MUST be Markdown.
+- Use the exact section headings below (spelling/case must match).
+- Do NOT add extra top-level headings.
+- Be specific and actionable. If concrete details are unknown, use clear placeholders like <SERVICE_NAME>, <NAMESPACE>, <VERSION>, <REGION>.
+- Prefer safe, reversible actions and call out risk.
+- Include rollback steps even if they are conditional.
+- Keep it concise but complete (avoid long prose).
+
+Context:
+Original DevOps Request:
+{{REQUEST}}
+
+Subtask (JSON):
+{{SUBTASK_JSON}}
+
+Optional Runbook Snippet (may be empty):
+{{DOC_SNIPPET}}
+
+Now produce the plan with EXACTLY these sections:
+
+## Required Inputs
+- List the exact info needed to run this subtask (env, service, version, access, etc.)
+- Include a short "If missing:" note for each critical input (e.g., "If missing: ask requester / check CI artifact registry").
+
+## Preconditions
+- Access/permissions required (e.g., kubeconfig, AWS role, VPN).
+- Dependencies and system health checks to confirm before acting.
+- Safety checks (change window/approval, backups if relevant).
+
+## Execution Steps
+- Provide an ordered list of steps.
+- Include concrete commands where reasonable, but keep them generic and safe:
+  - Kubernetes examples: kubectl, rollout, logs
+  - CI/CD examples: promote artifact, deploy job trigger
+  - DB examples: migration dry-run, apply, verify
+- If you give commands, annotate what success looks like after each major step.
+
+## Validation
+- How to verify success (metrics, logs, health endpoints, synthetic checks).
+- Include both immediate validation and short monitoring period guidance.
+
+## Rollback
+- Clear rollback triggers (what conditions require rollback).
+- Ordered rollback steps (commands if reasonable).
+- Post-rollback validation steps.
+
+## Assumptions/Risks
+- Bullet list of assumptions you made due to missing info.
+- Key risks (downtime, data loss, incompatibility, partial rollout).
+- Where the runbook snippet is insufficient or conflicts with the plan, note it.
+
+Make sure the plan is specific enough that a DevOps engineer could execute it with the placeholders filled in.

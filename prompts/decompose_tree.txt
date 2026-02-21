@@ -1,0 +1,46 @@
+You are an experienced DevOps engineer.
+
+Your task is to decompose the following DevOps operational request into a small set of high-level subtasks.
+
+IMPORTANT RULES:
+- Output MUST be valid JSON only.
+- Do NOT include explanations outside JSON.
+- Maximum 7 subtasks.
+- Each subtask should be concise and actionable.
+- Subtasks should collectively cover the full lifecycle:
+  - Required inputs / clarification
+  - Preconditions
+  - Execution
+  - Validation
+  - Rollback considerations
+
+DevOps Request:
+{{REQUEST}}
+
+Output JSON format:
+
+{
+  "request": "<original request>",
+  "subtasks": [
+    {
+      "id": "S1",
+      "title": "Short imperative phrase",
+      "goal": "What this subtask achieves",
+      "done_criteria": [
+        "Condition that indicates completion",
+        "Another measurable completion condition"
+      ],
+      "risks": [
+        "Potential operational risk",
+        "Ambiguity or missing information"
+      ]
+    }
+  ]
+}
+
+Guidelines:
+- Keep titles short (e.g., "Validate deployment inputs", "Execute staging deployment").
+- done_criteria must be measurable.
+- risks should include ambiguity, missing information, or operational failure risks.
+- Avoid writing detailed commands here — that happens in expansion.
+- Ensure no duplicate subtasks.
